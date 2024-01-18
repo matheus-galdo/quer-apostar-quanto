@@ -1,6 +1,6 @@
 import { notFoundError } from "@/errors";
-import { Game, GameTeamsNames } from "@/protocols";
-import { gamesRepository } from "@/repositories/gamesRepository";
+import { GameTeamsNames } from "@/protocols";
+import { gamesRepository } from "@/repositories";
 
 async function getGames() {
     return await gamesRepository.getGames();

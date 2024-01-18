@@ -1,5 +1,5 @@
 import { Game } from "@/protocols";
-import { gamesService } from "@/services/gamesService";
+import { gamesService } from "@/services";
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 

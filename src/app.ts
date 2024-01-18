@@ -2,8 +2,12 @@ import express from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import { errorHandlerMiddleware } from '@/middlewares';
-import { healthRouter, participantsRouter } from '@/routers';
-import { gamesRouter } from './routers/games.router';
+import {
+    healthRouter,
+    participantsRouter,
+    gamesRouter,
+    betsRouter
+} from '@/routers';
 
 const app = express();
 
@@ -13,7 +17,7 @@ app
     .use('/health', healthRouter)
     .use('/participants', participantsRouter)
     .use('/games', gamesRouter)
-    .use('/bets', participantsRouter)
+    .use('/bets', betsRouter)
     .use(errorHandlerMiddleware);
 
 export default app;
