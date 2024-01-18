@@ -10,7 +10,7 @@ async function getGameById(id: number) {
     const game = await gamesRepository.getGameById(id);
 
     if (!game) {
-        throw notFoundError('Game not found');
+        throw notFoundError('game');
     }
 
     return game;

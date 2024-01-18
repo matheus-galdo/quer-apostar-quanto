@@ -1,15 +1,15 @@
+import { Bet } from "@/protocols";
+import { betsService } from "@/services";
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 
-export function getBets(req: Request, res: Response) {
-    return res.send('ok');
-}
+export async function createBet(req: Request, res: Response) {
+    const { amountBet, awayTeamScore, gameId, homeTeamScore, participantId, } = req.body as Bet;
 
-export function createBet(req: Request, res: Response) {
-    return res.status(httpStatus.CREATED).send('ok');
+    const bet = await betsService.createBet({ amountBet, awayTeamScore, gameId, homeTeamScore, participantId });
+    return res.status(httpStatus.CREATED).send(bet);
 }
 
 export const betsController = {
-    getBets,
     createBet,
 }

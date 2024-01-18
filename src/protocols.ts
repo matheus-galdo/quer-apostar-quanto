@@ -10,7 +10,14 @@ export type GameTeamsNames = {
     awayTeamName: string;
 };
 
-export type Bet = Omit<BetPrisma, 'id' | 'updatedAt' | 'createdAt'>;
+ 
+export type Bet = Omit<BetPrisma, 'id' | 'updatedAt' | 'createdAt' | 'amountWon' | 'status'> & {
+    amoutWon?: number
+    status?: BetStatus
+};
+
+type BetStatus = "PENDING" | "WON" | "LOST";
+
 
 export type ApplicationError = Error & {
     statusCode: number;
