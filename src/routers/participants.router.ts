@@ -1,10 +1,8 @@
+import express from 'express';
 import { participantsController } from '@/controllers';
-import express, { Request, Response } from 'express';
 
 const participantsRouter = express.Router();
 
-participantsRouter
-    .post('/', participantsController.createParticipant)
-    .get('/', participantsController.getParticipants);
+participantsRouter.post('/', participantsController.createParticipant).get('/', participantsController.getParticipants);
 
 export { participantsRouter };

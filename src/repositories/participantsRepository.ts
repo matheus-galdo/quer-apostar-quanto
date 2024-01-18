@@ -1,6 +1,6 @@
-import { Participant } from "@/protocols";
-import { Participant as ParticipantPrisma } from "@prisma/client";
-import prisma from "@/database";
+import { Participant as ParticipantPrisma } from '@prisma/client';
+import { Participant } from '@/protocols';
+import prisma from '@/database';
 
 async function getParticipants() {
     return prisma.participant.findMany();
@@ -8,7 +8,7 @@ async function getParticipants() {
 
 async function getParticipantById(id: number) {
     return prisma.participant.findUnique({
-        where: { id: id, }
+        where: { id: id },
     });
 }
 
@@ -25,4 +25,4 @@ export const participantsRepository = {
     getParticipantById,
     createParticipant,
     updateParticipant,
-}
+};

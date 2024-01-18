@@ -1,6 +1,6 @@
-import { invalidParticipantBalanceAmount } from "@/errors";
-import { Participant } from "@/protocols";
-import { participantsRepository } from "@/repositories";
+import { invalidParticipantBalanceAmount } from '@/errors';
+import { Participant } from '@/protocols';
+import { participantsRepository } from '@/repositories';
 
 async function getParticipants() {
     return await participantsRepository.getParticipants();
@@ -17,4 +17,4 @@ async function createParticipant(participant: Participant) {
 export const participantsService = {
     createParticipant,
     getParticipants,
-}
+};

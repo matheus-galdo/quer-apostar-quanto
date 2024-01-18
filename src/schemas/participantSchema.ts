@@ -1,7 +1,7 @@
-import { ParticipantType } from "@/contracts/EntityContracts";
-import joi from "joi";
+import joi from 'joi';
+import { Participant } from '@/protocols';
 
-export const participantSchema = joi.object<ParticipantType>({
+export const participantSchema = joi.object<Participant>({
     name: joi.string().required(),
     balance: joi.number().required(),
 });

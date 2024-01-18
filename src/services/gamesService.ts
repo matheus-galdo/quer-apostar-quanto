@@ -1,6 +1,6 @@
-import { notFoundError } from "@/errors";
-import { GameTeamsNames } from "@/protocols";
-import { gamesRepository } from "@/repositories";
+import { notFoundError } from '@/errors';
+import { GameTeamsNames } from '@/protocols';
+import { gamesRepository } from '@/repositories';
 
 async function getGames() {
     return await gamesRepository.getGames();
@@ -24,4 +24,4 @@ export const gamesService = {
     getGames,
     createGame,
     getGameById,
-}
+};

@@ -1,8 +1,8 @@
+import express from 'express';
 import { gamesController } from '@/controllers';
 import { validateBody, validateRouteParams } from '@/middlewares';
 import { gameSchema } from '@/schemas/gameSchema';
 import { routeParamSchema } from '@/schemas/routeParamSchema';
-import express, { Request, Response } from 'express';
 
 const gamesRouter = express.Router();
 

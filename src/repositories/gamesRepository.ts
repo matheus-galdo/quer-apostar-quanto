@@ -1,5 +1,5 @@
-import prisma from "@/database";
-import { Game, GameTeamsNames } from "@/protocols";
+import prisma from '@/database';
+import { GameTeamsNames } from '@/protocols';
 
 async function getGames() {
     return prisma.game.findMany();
@@ -7,7 +7,7 @@ async function getGames() {
 
 async function getGameById(id: number) {
     return prisma.game.findUnique({
-        where: { id: id, },
+        where: { id: id },
         include: { bets: true },
     });
 }
@@ -20,4 +20,4 @@ export const gamesRepository = {
     getGames,
     createGame,
     getGameById,
-}
+};

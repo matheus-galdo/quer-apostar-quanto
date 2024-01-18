@@ -1,10 +1,9 @@
-import { invalidDataError } from "@/errors";
-import { invalidRouteParamError } from "@/errors/invalidRouteParamError";
-import { NextFunction, Request, Response } from "express";
-import httpStatus from "http-status";
-import { ObjectSchema } from "joi";
+import { NextFunction, Request, Response } from 'express';
+import { ObjectSchema } from 'joi';
+import { invalidRouteParamError } from '@/errors/invalidRouteParamError';
+import { invalidDataError } from '@/errors';
 
-type RequestContentType = "body" | "params" | "query" | "headers";
+type RequestContentType = 'body' | 'params' | 'query' | 'headers';
 
 export function validateBody(schema: ObjectSchema) {
     return validationMiddleware(schema, 'body');
@@ -21,14 +20,14 @@ function validationMiddleware(schema: ObjectSchema, type: RequestContentType) {
         if (validation.error) {
             let errorMessage = '';
             validation.error.details.forEach((d) => (errorMessage += d.message + ' '));
-            
-            if (type === "params") {
-                throw invalidRouteParamError(errorMessage)
+
+            if (type === 'params') {
+                throw invalidRouteParamError(errorMessage);
             }
-            
+
             throw invalidDataError(errorMessage);
         }
 
         next();
-    }
+    };
 }

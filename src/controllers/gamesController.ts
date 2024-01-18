@@ -1,7 +1,7 @@
-import { Game } from "@/protocols";
-import { gamesService } from "@/services";
-import { Request, Response } from "express";
-import httpStatus from "http-status";
+import { Request, Response } from 'express';
+import httpStatus from 'http-status';
+import { Game } from '@/protocols';
+import { gamesService } from '@/services';
 
 async function getGames(req: Request, res: Response) {
     const games = await gamesService.getGames();
@@ -15,7 +15,6 @@ async function getGameById(req: Request, res: Response) {
     return res.status(httpStatus.OK).send(game);
 }
 
-
 async function createGame(req: Request, res: Response) {
     const { awayTeamName, homeTeamName } = req.body as Game;
 
@@ -27,4 +26,4 @@ export const gamesController = {
     getGames,
     createGame,
     getGameById,
-}
+};
