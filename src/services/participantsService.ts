@@ -8,8 +8,6 @@ async function getParticipants() {
 
 async function createParticipant(participant: Participant) {
     if (participant.balance < 1000) {
-        console.log('aqui');
-        
         throw invalidParticipantBalanceAmount();
     }
 

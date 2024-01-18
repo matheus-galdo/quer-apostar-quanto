@@ -1,3 +1,5 @@
+import { invalidDataError } from "@/errors";
+import { invalidRouteParamError } from "@/errors/invalidRouteParamError";
 import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 import { ObjectSchema } from "joi";
@@ -13,11 +15,18 @@ export function validateRouteParams(schema: ObjectSchema) {
 }
 
 function validationMiddleware(schema: ObjectSchema, type: RequestContentType) {
-    return (req: Request, res: Response, next: NextFunction) => {        
+    return (req: Request, res: Response, next: NextFunction) => {
         const validation = schema.validate(req[type]);
 
         if (validation.error) {
-            return res.status(httpStatus.UNPROCESSABLE_ENTITY).send(validation.error.message);
+            let errorMessage = '';
+            validation.error.details.forEach((d) => (errorMessage += d.message + ' '));
+            
+            if (type === "params") {
+                throw invalidRouteParamError(errorMessage)
+            }
+            
+            throw invalidDataError(errorMessage);
         }
 
         next();

@@ -9,7 +9,7 @@ export function errorHandlerMiddleware(
     next: NextFunction
 ) {
     if ('statusCode' in error) {
-        return res.status(error.statusCode).send(error.message);
+        return res.status(error.statusCode).send({message: error.message});
     }
 
     console.log(error);
