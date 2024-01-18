@@ -8,3 +8,8 @@ export function getBets(req: Request, res: Response) {
 export function createBet(req: Request, res: Response) {
     return res.status(httpStatus.CREATED).send('ok');
 }
+
+export const betsController = {
+    getBets,
+    createBet,
+}

@@ -1,12 +1,9 @@
+import { ApplicationError } from "@/protocols";
 import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 
-type CustomError = Error & {
-    statusCode: number;
-}
-
 export function errorHandlerMiddleware(
-    error: Error | CustomError,
+    error: Error | ApplicationError,
     req: Request,
     res: Response,
     next: NextFunction

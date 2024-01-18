@@ -1,10 +1,12 @@
-import { Participant } from "@/contracts/EntityContracts";
+import { invalidParticipantBalanceAmount } from "@/errors";
+import { Participant } from "@/protocols";
 import { participantsRepository } from "@/repositories";
-
 
 async function createParticipant(participant: Participant) {
     if (participant.balance < 1000) {
-        throw new Error('Invalid Balance Amount');
+        console.log('aqui');
+        
+        throw invalidParticipantBalanceAmount();
     }
 
     return await participantsRepository.createParticipant(participant);

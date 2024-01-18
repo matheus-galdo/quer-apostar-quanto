@@ -1,4 +1,4 @@
-import { Participant } from "@/contracts/EntityContracts";
+import { Participant } from "@/protocols";
 import prisma from "@/database";
 
 async function createParticipant(participant: Participant) {
