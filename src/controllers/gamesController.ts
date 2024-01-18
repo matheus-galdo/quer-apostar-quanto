@@ -8,6 +8,14 @@ async function getGames(req: Request, res: Response) {
     return res.status(httpStatus.OK).send(games);
 }
 
+async function getGameById(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const game = await gamesService.getGameById(Number(id));
+    return res.status(httpStatus.OK).send(game);
+}
+
+
 async function createGame(req: Request, res: Response) {
     const { awayTeamName, homeTeamName } = req.body as Game;
 
@@ -18,4 +26,5 @@ async function createGame(req: Request, res: Response) {
 export const gamesController = {
     getGames,
     createGame,
+    getGameById,
 }

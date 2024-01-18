@@ -1,12 +1,14 @@
 import { gamesController } from '@/controllers';
-import { validateSchemaMiddleware } from '@/middlewares';
+import { validateBody, validateRouteParams } from '@/middlewares';
 import { gameSchema } from '@/schemas/gameSchema';
+import { routeParamSchema } from '@/schemas/routeParamSchema';
 import express, { Request, Response } from 'express';
 
 const gamesRouter = express.Router();
 
 gamesRouter
     .get('/', gamesController.getGames)
-    .post('/', validateSchemaMiddleware(gameSchema), gamesController.createGame);
+    .post('/', validateBody(gameSchema), gamesController.createGame)
+    .get('/:id', validateRouteParams(routeParamSchema), gamesController.getGameById);
 
 export { gamesRouter };

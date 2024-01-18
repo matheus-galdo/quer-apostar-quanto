@@ -4,18 +4,18 @@ import { ObjectSchema } from "joi";
 
 type RequestContentType = "body" | "params" | "query" | "headers";
 
-export function validateSchemaMiddleware(schema: ObjectSchema) {
-    return baseValidationMiddleware(schema, 'body');
+export function validateBody(schema: ObjectSchema) {
+    return validationMiddleware(schema, 'body');
 }
 
-export function validateRouteParamsMiddleware(schema: ObjectSchema) {
-    return baseValidationMiddleware(schema, 'params');
+export function validateRouteParams(schema: ObjectSchema) {
+    return validationMiddleware(schema, 'params');
 }
 
-function baseValidationMiddleware(schema: ObjectSchema, type: RequestContentType) {
+function validationMiddleware(schema: ObjectSchema, type: RequestContentType) {
     return (req: Request, res: Response, next: NextFunction) => {        
         const validation = schema.validate(req[type]);
-        
+
         if (validation.error) {
             return res.status(httpStatus.UNPROCESSABLE_ENTITY).send(validation.error.message);
         }
