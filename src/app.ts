@@ -3,6 +3,7 @@ import 'express-async-errors';
 import cors from 'cors';
 import { errorHandlerMiddleware } from '@/middlewares';
 import { healthRouter, participantsRouter } from '@/routers';
+import { gamesRouter } from './routers/games.router';
 
 const app = express();
 
@@ -11,7 +12,7 @@ app
     .use(cors())
     .use('/health', healthRouter)
     .use('/participants', participantsRouter)
-    .use('/games', participantsRouter)
+    .use('/games', gamesRouter)
     .use('/bets', participantsRouter)
     .use(errorHandlerMiddleware);
 

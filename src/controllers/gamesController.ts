@@ -1,8 +1,10 @@
+import { gamesService } from "@/services/gamesService";
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 
-function getGames(req: Request, res: Response) {
-    return res.send('ok');
+async function getGames(req: Request, res: Response) {
+    const games = await gamesService.getGames();
+    return res.status(httpStatus.OK).send(games);
 }
 
 function createGame(req: Request, res: Response) {
