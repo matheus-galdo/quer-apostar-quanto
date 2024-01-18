@@ -1,8 +1,7 @@
-import { Participant, Prisma } from "@prisma/client";
+import { Game } from "@/protocols";
 import joi from "joi";
 
-type GameSchema = Omit<Participant, 'id' | 'updatedAt' | 'createdAt'>;
-export const gameSchema = joi.object<GameSchema>({
-    name: joi.string().required(),
-    balance: joi.number().required(),
+export const gameSchema = joi.object<Game>({
+    homeTeamName: joi.string().required(),
+    awayTeamName: joi.string().required()
 });
