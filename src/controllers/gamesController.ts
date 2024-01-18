@@ -22,8 +22,17 @@ async function createGame(req: Request, res: Response) {
     return res.status(httpStatus.CREATED).send(participant);
 }
 
+async function finishGame(req: Request, res: Response) {
+    const { id } = req.params;
+    const { awayTeamScore, homeTeamScore } = req.body;
+
+    const game = await gamesService.finishGame(id, {awayTeamScore, homeTeamScore});
+    return res.status(httpStatus.OK).send(game);
+}
+
 export const gamesController = {
     getGames,
     createGame,
     getGameById,
+    finishGame,
 };
