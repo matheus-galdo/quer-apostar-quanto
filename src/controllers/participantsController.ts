@@ -3,8 +3,9 @@ import { participantsService } from "@/services";
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 
-function getParticipants(req: Request, res: Response) {
-    return res.send('ok');
+async function getParticipants(req: Request, res: Response) {
+    const participants = await participantsService.getParticipants();
+    return res.status(httpStatus.OK).send(participants);
 }
 
 async function createParticipant(req: Request, res: Response) {
