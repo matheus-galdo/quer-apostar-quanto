@@ -11,11 +11,53 @@ datasource db {
 }
 
 model Participant {
-  id Int @id @default(autoincrement())
-  name String
-  balance Int
+  id        Int      @id @default(autoincrement())
+  name      String
+  balance   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Bet       Bet[]
+
+  @@map("participants")
+}
+
+model Game {
+  id            Int      @id @default(autoincrement())
+  homeTeamName  String
+  awayTeamName  String
+  homeTeamScore Int      @default(0)
+  awayTeamScore Int      @default(0)
+  balance       Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  bets Bet[]
+
+  @@map("games")
+}
+
+model Bet {
+  id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("participants")
+  homeTeamScore Int
+  awayTeamScore Int
+  amountBet     Int
+  status        GameStatus
+  amountWon     Int?
+
+  participantId Int
+  participant   Participant @relation(fields: [participantId], references: [id])
+
+  gameId Int
+  game   Game @relation(fields: [gameId], references: [id])
+
+  @@map("bets")
+}
+
+enum GameStatus {
+  PENDING
+  WON
+  LOST
 }
