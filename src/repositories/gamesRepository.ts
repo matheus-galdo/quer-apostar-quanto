@@ -10,6 +10,9 @@ async function getGameById(id: number) {
         where: { id: id },
         include: { bets: true },
     });
+
+    prisma.game.findOne();
+    4 -> 5
 }
 
 async function createGame(game: GameTeamsNames) {
